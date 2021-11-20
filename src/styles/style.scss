@@ -1,0 +1,15 @@
+h1 {
+  color: var(--color-primary);
+}
+p {
+  color: var(--color-primary);
+}
+.btn {
+  background-color: var(--color-btn);
+  color: #fff;
+  transition: all 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+  &:hover {
+    background-color: var(--color-btn-light);
+    color: var(--color-btn);
+  }
+}

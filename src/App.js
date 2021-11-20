@@ -1,13 +1,14 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Dashboard from "./Pages/Dashboard";
 import Home from "./Pages/Home";
 
 function App() {
   return (
     <Router>
       <div>
-        <Routes>
-          <Route path="/about">
-            <Home />
+        <Switch>
+          <Route path="/dashboard">
+            <Dashboard />
           </Route>
           <Route path="/topics">
             <Home />
@@ -15,7 +16,7 @@ function App() {
           <Route path="/">
             <Home />
           </Route>
-        </Routes>
+        </Switch>
       </div>
     </Router>
   );
