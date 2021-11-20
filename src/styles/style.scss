@@ -13,6 +13,10 @@ p {
     color: var(--color-btn);
   }
 }
+.btn-active {
+  background-color: var(--color-btn-light);
+  color: var(--color-btn);
+}
 .btn-2 {
   background-color: var(--color-btn);
   color: #fff;

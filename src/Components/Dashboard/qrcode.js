@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 const QRSection = ({ text }) => {
   const [src, setSrc] = useState("");
   useEffect(() => {
-    QRCode.toDataURL("sdsdd").then((data) => {
+    QRCode.toDataURL("Hi Sam Pallikandy").then((data) => {
       setSrc(data);
     });
   }, []);
