@@ -1,0 +1,38 @@
+body {
+  background-color: red;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+h1 {
+  background-color: rgb(255, 255, 255);
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+  @media only screen and (max-width: 56.25em) {
+    font-size: 50%;
+  }
+}
+
+body {
+  font-family: "Jost", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  position: relative;
+  overflow-x: hidden;
+}
