@@ -6,7 +6,7 @@ export const AuthContext = createContext();
 const AuthContextprovider = (props) => {
   const [currentuser, setUser] = useState("");
   const [load, setLoading] = useState(true);
-  ///////Current User
+  //////////Current User
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -17,6 +17,7 @@ const AuthContextprovider = (props) => {
           email: user.email,
           phonenum: user.phoneNumber,
           photo: user.photoURL,
+          uid: user.uid,
         });
       } else {
       }
@@ -31,6 +32,7 @@ const AuthContextprovider = (props) => {
           email: result.user.email,
           phonenum: result.user.phoneNumber,
           photo: result.user.photoURL,
+          uid: result.user.uid,
         });
       })
       .catch((error) => {
@@ -40,6 +42,7 @@ const AuthContextprovider = (props) => {
 
   /////////////////Signout
   const SignOut = () => {
+    console.log("logout");
     signOut(auth)
       .then(() => {
         setUser(false);

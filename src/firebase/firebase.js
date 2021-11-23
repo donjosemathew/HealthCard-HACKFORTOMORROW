@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 const firebaseConfig = {
   apiKey: "AIzaSyCP147zV1DgWXDPz16MZm5UdeB_NmRfViw",
   authDomain: "health-carrd.firebaseapp.com",
@@ -12,4 +13,5 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
-export { provider, auth };
+const db = getFirestore();
+export { provider, auth, db };

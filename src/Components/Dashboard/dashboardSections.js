@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Prescription from "./prescription";
 import QRSection from "./qrcode";
 import { useState } from "react";
-const DashboardSection = () => {
+import { collection, getDoc, query, doc, where } from "firebase/firestore";
+import { db } from "../../firebase/firebase";
+const DashboardSection = ({ name, uid }) => {
+  const colRef = doc(db, "user", "qQr7J8vNTYRxvle1C8h3aZJXBkF3");
+  const [data, setData] = useState("");
+  //const q=query(colRef,where)
+  useEffect(() => {
+    getDoc(colRef).then((doc) => {
+      setData(doc.data());
+      console.log(data);
+    });
+  }, []);
+
   const [btn, setBtn] = useState(1);
   //Selected button from the Prescriptions, Test Results, Predictions btns
   return (
     <div className="dashboard-section p-10 flex flex-col lg:grid lg:grid-cols-3 relative">
       <div className="dashboard-section__sec1 flex flex-col col-span-2 p-11  m-8 h-full bg-white rounded">
-        <p className="text-4xl font-medium tracking-tight">👋 Hi Ben Bates</p>
+        <p className="text-4xl font-medium tracking-tight">👋 Hi {name}</p>
         <div className="dashboard-section__sec1__btnholder mt-10  ">
           <button
             onClick={() => {
@@ -47,10 +59,10 @@ const DashboardSection = () => {
             Predictions
           </button>
         </div>
-        {btn === 1 ? <Prescription /> : ""}
+        {btn === 1 ? <Prescription data={data.prescription} /> : ""}
       </div>
       <div className="dashboard-section__sec2 ">
-        <QRSection />
+        <QRSection data={data.personaldata} />
       </div>
     </div>
   );
