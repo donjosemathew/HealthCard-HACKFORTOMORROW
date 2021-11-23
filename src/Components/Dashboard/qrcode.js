@@ -4,9 +4,19 @@ import QRCode from "qrcode";
 import { IoCall, IoArrowRedoCircleSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import EditDetails from "../dialogs/editpersonaldata";
-
+import { AiOutlineEdit } from "react-icons/ai";
 const QRSection = ({ data }) => {
   const [src, setSrc] = useState("");
+  const [dialog, setDialog] = useState(false);
+
+  /////Close Dialogue
+  const CloseDialogue = () => {
+    setDialog(false);
+  };
+  /////Open Dialogue
+  const OpenDialogue = () => {
+    setDialog(true);
+  };
   useEffect(() => {
     QRCode.toDataURL("Hi Sam Pallikandy").then((data) => {
       setSrc(data);
@@ -14,7 +24,14 @@ const QRSection = ({ data }) => {
   }, []);
   return (
     <>
-      <div className="qrcode-section m-8 flex flex-col items-center   h-full bg-white rounded">
+      <div className="qrcode-section relative m-8 flex flex-col items-center   h-full bg-white rounded">
+        <div
+          onClick={OpenDialogue}
+          className="absolute cursor-pointer light-primary rounded-full w-16 h-16 bg-red-300 flex items-center justify-center top-6 right-6"
+        >
+          {" "}
+          <AiOutlineEdit className="" size="2.3rem" color="#575CE5" />
+        </div>
         <div className="container flex flex-col mt-10 justify-center items-center w-full">
           {src ? (
             <img src={src} className="h-80" alt="QR" />
@@ -74,7 +91,7 @@ const QRSection = ({ data }) => {
           </div>
         </div>
       </div>
-      <EditDetails />
+      {dialog ? <EditDetails data={data} CloseDialogue={CloseDialogue} /> : ""}
     </>
   );
 };
