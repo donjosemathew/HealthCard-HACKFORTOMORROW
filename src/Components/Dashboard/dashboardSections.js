@@ -8,11 +8,14 @@ const DashboardSection = ({ name, uid }) => {
   const colRef = doc(db, "user", "qQr7J8vNTYRxvle1C8h3aZJXBkF3");
   const [data, setData] = useState("");
   //const q=query(colRef,where)
-  useEffect(() => {
+  const resetData = () => {
+    setData("");
     getDoc(colRef).then((doc) => {
       setData(doc.data());
-      console.log(data);
     });
+  };
+  useEffect(() => {
+    resetData();
   }, []);
 
   const [btn, setBtn] = useState(1);
@@ -62,7 +65,7 @@ const DashboardSection = ({ name, uid }) => {
         {btn === 1 ? <Prescription data={data.prescription} /> : ""}
       </div>
       <div className="dashboard-section__sec2 ">
-        <QRSection data={data.personaldata} />
+        <QRSection resetData={resetData} data={data.personaldata} />
       </div>
     </div>
   );
