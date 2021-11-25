@@ -2,8 +2,8 @@ import { updateDoc, doc } from "firebase/firestore";
 import { useState, useEffect } from "react/cjs/react.development";
 import { db } from "../../firebase/firebase";
 import Loader from "react-loader-spinner";
-const EditDetails = ({ CloseDialogue, data, resetData }) => {
-  const docref = doc(db, "user", "qQr7J8vNTYRxvle1C8h3aZJXBkF3");
+const EditDetails = ({ CloseDialogue, data, resetData, uid }) => {
+  const docref = doc(db, "user", uid);
   const [age, setAge] = useState(0);
   const [sex, setSex] = useState("");
   const [weight, setWeight] = useState(0);

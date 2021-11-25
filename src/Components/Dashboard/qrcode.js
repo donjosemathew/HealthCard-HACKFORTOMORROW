@@ -5,7 +5,7 @@ import { IoCall, IoArrowRedoCircleSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import EditDetails from "../dialogs/editpersonaldata";
 import { AiOutlineEdit } from "react-icons/ai";
-const QRSection = ({ data, resetData }) => {
+const QRSection = ({ data, resetData, uid, name }) => {
   const [src, setSrc] = useState("");
   const [dialog, setDialog] = useState(false);
 
@@ -18,7 +18,7 @@ const QRSection = ({ data, resetData }) => {
     setDialog(true);
   };
   useEffect(() => {
-    QRCode.toDataURL("Hi Sam Pallikandy").then((data) => {
+    QRCode.toDataURL(`patient/${uid}`).then((data) => {
       setSrc(data);
     });
   }, []);
@@ -39,7 +39,7 @@ const QRSection = ({ data, resetData }) => {
             <Loader type="TailSpin" color="#575ce5" height={65} width={65} />
           )}
         </div>
-        <p className="text-4xl font-medium tracking-tight">Ben Bates</p>
+        <p className="text-4xl font-medium tracking-tight">{name}</p>
         <div className="w-full">
           {data ? (
             <>
@@ -93,6 +93,7 @@ const QRSection = ({ data, resetData }) => {
       </div>
       {dialog ? (
         <EditDetails
+          uid={uid}
           resetData={resetData}
           data={data}
           CloseDialogue={CloseDialogue}

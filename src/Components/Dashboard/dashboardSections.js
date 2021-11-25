@@ -2,16 +2,19 @@ import React, { useEffect } from "react";
 import Prescription from "./prescription";
 import QRSection from "./qrcode";
 import { useState } from "react";
-import { collection, getDoc, query, doc, where } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
+import Testresults from "./testresults";
 const DashboardSection = ({ name, uid }) => {
-  const colRef = doc(db, "user", "qQr7J8vNTYRxvle1C8h3aZJXBkF3");
+  const colRef = doc(db, "user", uid);
   const [data, setData] = useState("");
+  const [load, setLoad] = useState(true);
   //const q=query(colRef,where)
   const resetData = () => {
     setData("");
     getDoc(colRef).then((doc) => {
       setData(doc.data());
+      setLoad(false);
     });
   };
   useEffect(() => {
@@ -62,10 +65,25 @@ const DashboardSection = ({ name, uid }) => {
             Predictions
           </button>
         </div>
-        {btn === 1 ? <Prescription data={data.prescription} /> : ""}
+        {btn === 1 ? <Prescription load={load} data={data.prescription} /> : ""}
+        {btn === 2 ? (
+          <Testresults
+            uid={uid}
+            load={load}
+            resetData={resetData}
+            data={data.test}
+          />
+        ) : (
+          ""
+        )}
       </div>
       <div className="dashboard-section__sec2 ">
-        <QRSection resetData={resetData} data={data.personaldata} />
+        <QRSection
+          name={name}
+          uid={uid}
+          resetData={resetData}
+          data={data.personaldata}
+        />
       </div>
     </div>
   );
