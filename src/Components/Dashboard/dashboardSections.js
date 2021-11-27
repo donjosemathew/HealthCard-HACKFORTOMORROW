@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Prescription from "./prescription";
 import QRSection from "./qrcode";
 import { useState } from "react";
-import { getDoc, doc, onSnapshot } from "firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import Testresults from "./testresults";
 const DashboardSection = ({ name, uid, newuser }) => {
@@ -13,7 +13,6 @@ const DashboardSection = ({ name, uid, newuser }) => {
   const resetData = () => {
     setData("");
     getDoc(colRef).then((doc) => {
-      console.log(doc.data(), "Sdd");
       if (doc.exists) {
         setData(doc.data());
         setLoad(false);

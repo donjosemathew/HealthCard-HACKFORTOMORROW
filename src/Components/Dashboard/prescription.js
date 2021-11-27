@@ -1,7 +1,6 @@
 import { FaRegHospital } from "react-icons/fa";
 import Loader from "react-loader-spinner";
 const Prescription = ({ data, load }) => {
-  console.log(data);
   return (
     <div className="prescription w-full h-full mt-5 p-6">
       {!load ? (

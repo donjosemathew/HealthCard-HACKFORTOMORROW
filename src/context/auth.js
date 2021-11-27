@@ -1,7 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { signInWithPopup, onAuthStateChanged, signOut } from "firebase/auth";
 import { provider, auth, db } from "../firebase/firebase";
-import { collection, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 export const AuthContext = createContext();
 
 const AuthContextprovider = (props) => {
@@ -46,7 +46,6 @@ const AuthContextprovider = (props) => {
 
   /////////////////Signout
   const SignOut = () => {
-    console.log("logout");
     signOut(auth)
       .then(() => {
         setUser(false);

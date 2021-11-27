@@ -5,7 +5,7 @@ import { IoCall, IoArrowRedoCircleSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import EditDetails from "../dialogs/editpersonaldata";
 import { AiOutlineEdit } from "react-icons/ai";
-import { Link } from "react-router-dom";
+
 import copy from "copy-to-clipboard";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
