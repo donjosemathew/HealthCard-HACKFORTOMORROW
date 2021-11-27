@@ -11,7 +11,6 @@ const DashboardSection = ({ name, uid, newuser }) => {
   const [load, setLoad] = useState(true);
   //const q=query(colRef,where)
   const resetData = () => {
-    setData("");
     getDoc(colRef).then((doc) => {
       if (doc.exists) {
         setData(doc.data());
