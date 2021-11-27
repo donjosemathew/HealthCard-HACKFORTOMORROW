@@ -95,7 +95,9 @@ const Testresults = ({ data, resetData, load, uid }) => {
                 );
               })
             ) : (
-              <h1>No Data available</h1>
+              <div className=" w-full flex items-center justify-center">
+                <p className="text-3xl font-bold">No Data Available !</p>
+              </div>
             )
           ) : (
             <div className="flex  w-full h-full justify-center items-center">

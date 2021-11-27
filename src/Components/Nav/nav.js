@@ -8,14 +8,21 @@ const Nav = ({ image, SignOut }) => {
       <h1 className="text-5xl font-bold">
         Health<span className="font-medium">Carrd</span>
       </h1>
-      <img
-        onClick={() => {
-          SignOut();
-        }}
-        src={image}
-        alt="Profile "
-        className="w-28 h-28 rounded-full cursor-pointer "
-      />
+      <div className=" flex flex-row items-center justify-center">
+        <button
+          onClick={() => {
+            SignOut();
+          }}
+          className="text-3xl cursor-pointer mr-5 font-bold subtxt tracking-tighter sub-txt"
+        >
+          Logout
+        </button>
+        <img
+          src={image}
+          alt="Profile "
+          className="w-28 h-28 rounded-full cursor-pointer "
+        />{" "}
+      </div>
     </nav>
   );
 };

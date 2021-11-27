@@ -5,6 +5,10 @@ import { IoCall, IoArrowRedoCircleSharp } from "react-icons/io5";
 import { useEffect, useState } from "react";
 import EditDetails from "../dialogs/editpersonaldata";
 import { AiOutlineEdit } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import copy from "copy-to-clipboard";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const QRSection = ({ data, resetData, uid, name }) => {
   const [src, setSrc] = useState("");
   const [dialog, setDialog] = useState(false);
@@ -78,9 +82,34 @@ const QRSection = ({ data, resetData, uid, name }) => {
             <div className="w-full flex justify-center items-center">
               <Loader type="TailSpin" color="#575ce5" height={65} width={65} />
             </div>
-          )}
+          )}{" "}
+          <ToastContainer
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <div className="w-full  flex justify-center items-center">
-            <button className="p-4 flex flex-row justify-center items-center ml-6 rounded btn-2 mt-6 font-medium pl-7 pr-7 text-xl tracking-tight		bg-blue-50">
+            <button
+              onClick={() => {
+                copy(`dashboard/${uid}`);
+                toast("Profile URL Copied", {
+                  position: "top-right",
+                  autoClose: 5000,
+                  hideProgressBar: false,
+                  closeOnClick: true,
+                  pauseOnHover: true,
+                  draggable: true,
+                  progress: undefined,
+                });
+              }}
+              className="p-4 flex flex-row justify-center items-center ml-6 rounded btn-2 mt-6 font-medium pl-7 pr-7 text-xl tracking-tight		bg-blue-50"
+            >
               SHARE PROFILE
               <IoArrowRedoCircleSharp
                 className="ml-5"
@@ -89,6 +118,7 @@ const QRSection = ({ data, resetData, uid, name }) => {
               />
             </button>
           </div>
+          <ToastContainer />
         </div>
       </div>
       {dialog ? (

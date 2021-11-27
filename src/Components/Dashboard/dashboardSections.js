@@ -2,10 +2,10 @@ import React, { useEffect } from "react";
 import Prescription from "./prescription";
 import QRSection from "./qrcode";
 import { useState } from "react";
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase/firebase";
 import Testresults from "./testresults";
-const DashboardSection = ({ name, uid }) => {
+const DashboardSection = ({ name, uid, newuser }) => {
   const colRef = doc(db, "user", uid);
   const [data, setData] = useState("");
   const [load, setLoad] = useState(true);
@@ -13,14 +13,19 @@ const DashboardSection = ({ name, uid }) => {
   const resetData = () => {
     setData("");
     getDoc(colRef).then((doc) => {
-      setData(doc.data());
-      setLoad(false);
+      console.log(doc.data(), "Sdd");
+      if (doc.exists) {
+        setData(doc.data());
+        setLoad(false);
+      }
     });
   };
   useEffect(() => {
     resetData();
+  }, [newuser]);
+  useEffect(() => {
+    resetData();
   }, []);
-
   const [btn, setBtn] = useState(1);
   //Selected button from the Prescriptions, Test Results, Predictions btns
   return (
@@ -65,25 +70,47 @@ const DashboardSection = ({ name, uid }) => {
             Predictions
           </button>
         </div>
-        {btn === 1 ? <Prescription load={load} data={data.prescription} /> : ""}
-        {btn === 2 ? (
-          <Testresults
-            uid={uid}
-            load={load}
-            resetData={resetData}
-            data={data.test}
-          />
+
+        {data ? (
+          btn === 1 ? (
+            <Prescription
+              load={load}
+              data={data.prescription ? data.prescription : []}
+            />
+          ) : (
+            ""
+          )
+        ) : (
+          ""
+        )}
+        {data ? (
+          btn === 2 ? (
+            <Testresults
+              uid={uid}
+              load={load}
+              resetData={resetData}
+              data={data.test}
+            />
+          ) : (
+            ""
+          )
         ) : (
           ""
         )}
       </div>
       <div className="dashboard-section__sec2 ">
-        <QRSection
-          name={name}
-          uid={uid}
-          resetData={resetData}
-          data={data.personaldata}
-        />
+        {data ? (
+          <QRSection
+            name={name}
+            uid={uid}
+            resetData={resetData}
+            data={data.personaldata}
+          />
+        ) : (
+          <div className=" w-full flex items-center justify-center">
+            <p className="text-3xl font-bold"></p>
+          </div>
+        )}
       </div>
     </div>
   );
