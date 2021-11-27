@@ -7,7 +7,7 @@ import { db } from "../../firebase/firebase";
 import Testresults from "./testresults";
 const DashboardSection = ({ name, uid, newuser }) => {
   const colRef = doc(db, "user", uid);
-  const [data, setData] = useState("");
+  const [data, setData] = useState([]);
   const [load, setLoad] = useState(true);
   //const q=query(colRef,where)
   const resetData = () => {

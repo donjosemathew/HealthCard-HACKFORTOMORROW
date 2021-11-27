@@ -27,7 +27,7 @@ const Testresults = ({ data, resetData, load, uid }) => {
             <HiPlusSm size="1.5em" /> Prescriptions
           </button>
         </div>
-        <div className="grid gap-4 grid-cols-2 mt-3">
+        <div className="grid gap-4 grid-cols-1 lg:grid-cols-2 mt-3">
           {!load ? (
             data ? (
               data.map((item, index) => {
@@ -75,7 +75,7 @@ const Testresults = ({ data, resetData, load, uid }) => {
                           </div>
                           <div className=" flex flex-col items-end">
                             <p className="text-2xl  head-txt font-medium tracking-tight">
-                              Reult Date :{" "}
+                              Reult Date :
                               <span className="sub-txt"> {item.date}</span>
                             </p>
                             <a

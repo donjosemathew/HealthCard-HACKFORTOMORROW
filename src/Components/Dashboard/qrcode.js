@@ -22,7 +22,9 @@ const QRSection = ({ data, resetData, uid, name }) => {
     setDialog(true);
   };
   useEffect(() => {
-    QRCode.toDataURL(`patient/${uid}`).then((data) => {
+    QRCode.toDataURL(
+      `https://health-carrd-doctors.herokuapp.com/dashboard/${uid}`
+    ).then((data) => {
       setSrc(data);
     });
   }, []);
@@ -97,7 +99,9 @@ const QRSection = ({ data, resetData, uid, name }) => {
           <div className="w-full  flex justify-center items-center">
             <button
               onClick={() => {
-                copy(`dashboard/${uid}`);
+                copy(
+                  `https://health-carrd-doctors.herokuapp.com/dashboard/${uid}`
+                );
                 toast("Profile URL Copied", {
                   position: "top-right",
                   autoClose: 5000,

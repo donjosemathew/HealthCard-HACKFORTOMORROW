@@ -31,7 +31,10 @@ const Home = () => {
                     </p>
                     <div className="flex mt-4 p-5 bg-white bg-opacity-20">
                       {" "}
-                      <a target="_blank" href="">
+                      <a
+                        target="_blank"
+                        href="https://health-carrd-doctors.herokuapp.com"
+                      >
                         <button
                           onClick={() => {}}
                           className={
